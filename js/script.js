@@ -16,15 +16,17 @@ console.log(`0${date.getDate()} ${date.getMonth() + 1} ${date.getFullYear()}`);
 
 
 function getDiffDays (start, end) {
-    let date1 = new Date( Date.parse(start));
-    let date2 = new Date( Date.parse(end));
+    let dateOne = new Date( start);
+    let dateTwo = new Date( end);
+
+    const oneDayInMilisecond = 60 * 60 * 24 * 1000;
     
-    if (date1.toString() === 'Invalid Date') {
+    if (dateOne.toString() === 'Invalid Date') {
         return console.error('Error: invalid date');
-    } else if (date1 >= date2) {
+    } else if (dateOne >= dateTwo) {
         return console.error('Error: your start date is later than end');
     } else {
-        return (date2 - date1) / (60 * 60 * 24 * 1000);
+        return (dateTwo - dateOne) / oneDayInMilisecond;
     }
 }
 
@@ -40,16 +42,13 @@ console.log(getDiffDays('2021-01-02', '2020-03-15')); // Error: your start date 
 
 
 function isWeekend (date) {
-    let day = new Date( Date.parse(date));
+    let day = new Date(date);
     let weekend = day.getDay();
-    if (weekend === 0 || weekend === 6) {
-        return true;
-    } else {
-        return false;
-    }
+    return weekend === 0 || weekend === 6;
 }
 
 console.log(isWeekend('2022-02-12'));
+console.log(isWeekend('2022-02-14'));
 
 
 ///////     Task #4
